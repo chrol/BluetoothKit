@@ -56,6 +56,10 @@ public class BKPeripheral: BKPeer, BKCBPeripheralManagerDelegate, BKAvailability
     /// Bluetooth LE availability derived from the underlying CBPeripheralManager object.
 
     public var availability: BKAvailability {
+        
+        guard peripheralManager != nil else {
+            return BKAvailability(peripheralManagerState: CBPeripheralManagerState.unknown)
+        }
         if #available(iOS 10.0, tvOS 10.0, OSX 10.13, *) {
             return BKAvailability(managerState: peripheralManager.state)
         } else {
