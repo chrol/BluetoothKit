@@ -12,6 +12,11 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '3.0'
+s.watchos.exclude_files = 'Source/BKCBPeripheralManagerDelegateProxy.swift',
+                          'Source/BKPeripheral.swift',
+                          'Source/BKPeripheralConfiguration.swift',
+                          'Source/BKPeripheralStateMachine.swift',
+                          'Source/BKRemoteCentral.swift'
   s.tvos.exclude_files = 'Source/BKCBPeripheralManagerDelegateProxy.swift',
                          'Source/BKPeripheral.swift',
                          'Source/BKPeripheralConfiguration.swift',
