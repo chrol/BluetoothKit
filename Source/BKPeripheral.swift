@@ -230,6 +230,10 @@ public class BKPeripheral: BKPeer, BKCBPeripheralManagerDelegate, BKAvailability
             if let localName = _configuration.localName {
                 advertisementData[CBAdvertisementDataLocalNameKey] = localName
             }
+            
+            if let adData = _configuration.adData { 
+                advertisementData[CBAdvertisementDataServiceDataKey] = adData
+            }
             peripheralManager.startAdvertising(advertisementData)
         }
     }
