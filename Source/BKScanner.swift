@@ -124,7 +124,13 @@ internal class BKScanner: BKCBCentralManagerDiscoveryDelegate {
 
         remotePeripheral.configuration = configuration
         let discovery = BKDiscovery(advertisementData: advertisementData, remotePeripheral: remotePeripheral, RSSI: RSSI)
-        if !discoveries.contains(discovery) {
+        
+        if let index = discoveries.index(of: discovery) {
+            if discoveries[index].localName != discovery.localName {
+                discoveries[index] = discovery
+                scanHandlers?.progressHandler?([ discovery ])
+            }
+        } else {
             discoveries.append(discovery)
             scanHandlers?.progressHandler?([ discovery ])
         }

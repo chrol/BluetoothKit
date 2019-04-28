@@ -88,7 +88,15 @@ internal class BKContinousScanner {
             state = .scanning
             stateHandler?(state)
             try scanner.scanWithDuration(duration, progressHandler: { newDiscoveries in
+                
+                //replace to get latest advertiesmentData and RSSI
+                for disco in newDiscoveries {
+                    if let indx = self.maintainedDiscoveries.index(of: disco) {
+                        self.maintainedDiscoveries[indx] = disco
+                    }
+                }
                 let actualDiscoveries = newDiscoveries.filter({ !self.maintainedDiscoveries.contains($0) })
+                
                 if !actualDiscoveries.isEmpty {
                     self.maintainedDiscoveries += actualDiscoveries
                     let changes = actualDiscoveries.map({ BKDiscoveriesChange.insert(discovery: $0) })
