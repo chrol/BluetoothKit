@@ -25,7 +25,7 @@
 import CoreBluetooth
 
 public func == (lhs: BKDiscovery, rhs: BKDiscovery) -> Bool {
-    return lhs.remotePeripheral == rhs.remotePeripheral
+    return lhs.remotePeripheral == rhs.remotePeripheral && lhs.advertisementData.count == rhs.advertisementData.count
 }
 
 /**

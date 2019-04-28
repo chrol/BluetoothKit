@@ -74,7 +74,7 @@ internal class PeripheralViewController: UIViewController, AvailabilityViewContr
             let dataServiceUUID = UUID(uuidString: "6E6B5C64-FAF7-40AE-9C21-D4933AF45B23")!
             let dataServiceCharacteristicUUID = UUID(uuidString: "477A2967-1FAB-4DC5-920A-DEE5DE685A3D")!
             let localName = Bundle.main.infoDictionary!["CFBundleName"] as? String
-            let configuration = BKPeripheralConfiguration(dataServiceUUID: dataServiceUUID, dataServiceCharacteristicUUID: dataServiceCharacteristicUUID, localName: localName)
+            let configuration = BKPeripheralConfiguration(dataServiceUUID: dataServiceUUID, dataServiceCharacteristicUUID: dataServiceCharacteristicUUID, localName: localName, chunkingEnabled: true)
             try peripheral.startWithConfiguration(configuration)
             Logger.log("Awaiting connections from remote centrals")
         } catch let error {
